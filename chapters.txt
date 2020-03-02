@@ -1,0 +1,7 @@
+chapters/introduction.md
+chapters/know-your-tools.md
+chapters/adjacent-technologies.md
+chapters/software-engineering-and-architecture.md
+chapters/the-business.md
+chapters/personal-development.md
+chapters/conclusions.md

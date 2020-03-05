@@ -26,6 +26,34 @@ there are many more options to consider. I'm currently using
 often seem to use [Notepad++](https://notepad-plus-plus.org/) and
 [Sublime Text](https://www.sublimetext.com/) is popular on MacOS.
 
+Programmer's Editor
+
+* Use a real programmer's editor
+* Get to know the features
+* Take time to become an expert
+* You will save time in the end
+
+Editor Features
+
+* Syntax highlighting
+* Auto-complete
+* Indentation
+* Folding
+
+IDE Features
+
+* Deeper knowledge of languages
+* Compile / run
+* Debugging
+* Source code control
+* Multi-file projects
+
+More Features
+
+* Everything is configurable
+* Everything is extensible
+* Everything is programmable
+
 ## Operating system
 
 Your operating system is the interface between you and the processing power
@@ -46,6 +74,48 @@ or containers (of which, mush more later) and your operating system is largely
 used for running a browser and launching your virtualised development
 environments.
 
+* Your operating system is where you live
+* Get to know its features
+* Design your working environment
+* Automate things
+
+Operating Systems
+
+* What do you use your operating system for?
+* Web browsing
+* Reading email
+* Social media
+* Development?
+    * Virtual machines
+    * Containers
+
+Configure Your OS
+
+* Make it as comfortable as possible
+* Window decoration
+* Window behaviour
+* Virtual desktops
+
+Automate Common Tasks
+
+* Automate anything the third time you need to do it
+* Learn your OS's scripting mechanism
+* Linux / Unix shell scripting
+    * Aliases
+    * Functions
+Powershell
+
+SSH Connections
+
+* You will need to connect to other systems
+* Secure shell (ssh)
+    * ssh-agent / ssh-add
+    * ~/.ssh/config
+    * Keepalive
+    * Username
+    * Agent forwarding
+* Putty does all of this too
+
 ## Source code control
 
 When I first started in the industry, source code control was a relatively
@@ -63,3 +133,37 @@ a project without using a source code control system. And currently (and for
 the last ten years or so) the most popular source code control system has been
 Git. There would need to be a pretty good reason for a software project to
 choose anything else.
+
+* Why aren't you using git?
+* Why aren't you using Github?
+    * Microsoft
+* Understand how your source code control works
+
+Switch to Git
+
+* Git has been the de-facto industry standard for ten years
+* More powerful
+* More flexible
+* Harder to use
+* Different paradigm
+* "Optimistic concurrency"
+* Good merge tools
+
+Git Advantages
+
+* Distributed model
+    * Off-line access
+* Branches are easy and quick
+* Rebasing
+    * Interactive rebasing
+* "Fetch" vs "Pull"
+* Safety net
+
+Git in the Cloud
+
+* Don't run your own Git infrastructure
+* Other people are better than you at doing that
+* Social coding
+* Github
+* Gitlab
+* Bitbucket

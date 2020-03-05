@@ -310,3 +310,30 @@ that a publisher would do for you. This will, obviously, eat into the amount
 of money you make.
 
 ### Speaking about your work
+
+Give talks about your projects
+
+* Public speaking isn't as hard as you might think
+* Start with a lightning talk
+
+Some Public Speaking Secrets
+
+* Some people aren't good at public speaking
+* Or, at least, they don't make an effort to improve
+* Not hard to be good at it
+* Very easy to be better than average
+* Watch videos to improve
+
+* Study TED talks
+* Excellent examples of talks
+* Interesting subject matter
+* Engaging speakers
+* Well-designed slides
+* Something to aim at
+
+Public Speaking Practicalities
+
+* Find somewhere to speak
+* Meet-up groups
+* Local user groups
+* Conferences (maybe invitation-only for speakers, sometimes paid)

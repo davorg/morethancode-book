@@ -311,29 +311,196 @@ of money you make.
 
 ### Speaking about your work
 
-Give talks about your projects
+I think the best way to be seen as an expert on your favourite technologies is
+to give talks about your projects.
 
-* Public speaking isn't as hard as you might think
-* Start with a lightning talk
+I realise that many (perhaps most) people feel uncomfortable speaing in
+public, but it is a skill that can be learned just like any other. I've been
+giving public talks for about twenty years and if you had seen my first
+attempts, you would be astonished by that fact.
 
-Some Public Speaking Secrets
+I spent a lot of 2000 working on my first book (it was a technical book about
+Perl programming). In the summer of 2000, the London Perl Users Group was
+running the first European Perl Conference. I was slightly involved in
+organising the conference, but I had no plans to speak at it. Public speaking
+was not something I had any interest in at all. I have a slight stutter and
+in stressful situations it tends to get worse. I could see no reason for
+putting myself under the stress of giving a talk.
 
-* Some people aren't good at public speaking
-* Or, at least, they don't make an effort to improve
-* Not hard to be good at it
-* Very easy to be better than average
-* Watch videos to improve
+But my publishers had other ideas. They could see that speaking at the
+conference would be a great opportunity to market the book. They persuaded me
+to propose a twenty-minute talk summarising some of the main points from the
+book and, nervously, I agreed.
 
-* Study TED talks
-* Excellent examples of talks
-* Interesting subject matter
-* Engaging speakers
-* Well-designed slides
-* Something to aim at
+The day of the talk was stressful. The book hadn't been published yet, but
+the publishers had printed a booklet of extracts and posted two hundred copies
+to me. They were supposed to arrive a few days before the conference, but
+something went wrong and the couriers had attempted to deliver the box to my
+house while I was at the first day of the conference. Which meant that I had
+to spend the morning of the second day traipsing across south London to their
+depot so I could collect a heavy box which I then took on the underground to
+the conference venue. By the time I got there, I was hot, sweaty, tired and
+more than a little grumpy.
 
-Public Speaking Practicalities
+My talk was in the afternoon, so I had a while to relax. I sat in the hall
+for the talk before mine - which was science fiction author Charles Stross
+being effortless informative and entertaining. And then it was my turn.
 
-* Find somewhere to speak
-* Meet-up groups
-* Local user groups
-* Conferences (maybe invitation-only for speakers, sometimes paid)
+It was a disaster. I hadn't practised enough. I hadn't really thought about
+what I wanted to say. And, to be honest, after a year working on the book, I
+was slightly bored by the material. And if the speaker is bored by a talk,
+there's no chance that the audience will be interested. I stuttered through
+my slides and left the stage, vowing that I would never speak in public again.
+
+But I had forgotten something. At the end of the conference, we had organised
+as session of "lightning talks". This are five minute talks that are aimed at
+tempting new people to try speaking. Or sometimes you'll get more experienced
+speakers letting their hair down a bit and trying something a bit different.
+As a fairly well-known name on the London Perl scene, I had put my name down
+to give a lightning talk in the hope that it would persuade other people to
+give it a try.
+
+So I had to go back on stage the very next day. This time, the experience was
+completely different. It was a far shorter talk, the material was much more
+interesting (I talked about a completely ridiculous code library that I had
+written) and people laughed at my feeble jokes.
+
+It was great. I immediately decided that I'd been far too quick to give up on
+public speaking and that I'd like to give it another try. The London Perl
+Group ran occasional technical meetings and soon I became a regular speaker
+at those events. By the time the next year's European Perl Conference came
+round (this time in Amsterdam) I was an old hand and was very happy to offer
+them some talks.
+
+As I said before, most people are scared of public speaking. But there's really
+no need to be. You might not be great the first time you stand up in front of
+an audience. But it only takes a little effort to get better. And once you
+experienced the applause you get at the end of well-presented talk, I
+guarantee you'll want to do it again.
+
+I strongly recommend that you start with something like a lightning talk at
+your local users' group. Maybe your local users' group doesn't have lightning
+talks. If that's the case, why not ask if they'll consider reserving space
+for two or three of them at the next meeting. Or, perhaps, volunteer to
+organise an evening of lightning talks. The London Perl Group does this about
+once a year and it's a great way to draw new speakers in. Once you've
+organised a meeting like that, grab a prime speaking slot for yourself.
+
+And talk about something you're interested in. You don't need much material to
+fill five minutes. How about a list of five libraries that you think people
+don't use enough. Or an amusing exploration of some strange code that you've
+recently found in your codebase (all codebases have code like that somewhere).
+
+**Some Public Speaking Secrets**
+
+Allow me to let you into some secrets of public speaking.
+
+Most people who do, really aren't very good at it. And they make almost no
+effort to improve. If you spend any time at technical meet-ups or conferences
+you'll soon start to realise how bad most speakers are. Or perhaps you've seen
+people giving terrible presentations at your company. They give no thought to
+what information they need to pass on or the most engaging way to do that.
+
+So when I say it's easy to be a good public speaker, what I actually mean is
+that it's easy to be better than the average public speaker - and that's
+because the average public speaker is very bad at it. You only need to put
+a little effort into honing your skills in order to stand out from the pack.
+
+In order to improve you need to watch other speakers. You can watch bad
+speakers and identify what it is they are doing wrong. And you can watch good
+speakers and identify what they are doing right. You should also watch videos
+of yourself (painful as that might be) so you can see what you need to do in
+order to improve.
+
+It's easy enough to find bad speakers to watch. As I said above, you just need
+to watch the vast majority of presentations. It's becoming very common for
+conference talks to be streamed live or published on YouTube - so that will
+give you a ripe seam of examples to learn from. It's harder to find good
+examples, but there is one source that will give you more good examples than
+you will ever need - TED.
+
+The TED web site is treasure trove of fantastic speakers giving engaging talks
+on fascinating topics. The people who organise TED work hard to pick the best
+speakers and give them as much support as they can to give the most interesting
+talks. If you spend any time at all browsing talks on the TED site you'll
+start to pick out the traits that make these talks so good.
+
+The talks are laser-focussed. The speakers know exactly what they want to tell
+the audience. They only have eighteen minutes each so they carefully plan how
+they are going to spend that time. Even so, you'll notice that they probably
+cover less material than the speakers you are more used to seeing. A TED
+speaker might make only three or four big points in that time.
+
+The talks are almost all phrased as a story. And it will often be a story
+that the speaker was personally involved in. Telling a story is a great way
+to engage an audience and if you can make it personal then your connection to
+the story will make the audience enjoy it more. There will usually be humour
+in the talk, but very few TED speakers tell jokes. It's far more likely that
+it will be situational humour that arises directly from the story being told.
+
+The slides for TED talks are always incredibly well-designed. You're probably
+used to slides that are just lists of bullet points - often far too many bullet
+points on one slide. If your slides are full of words then your audience will
+spend most of the time reading your slides rather than listening to you. Good
+slides contain images that illustrate the story. You'll see there are very
+few words on TED slides. When there are words on a slide, it's likely that
+there will only be two or three and they'll be in a massive font. If you ever
+find yourself saying "those of you at the back probably can't read this" then
+you've tried to squeeze too many words onto your slides.
+
+I'm not saying that everyone will be able to deliver TED-quality presentations.
+But I am saying that if you think about your presentations in the same way
+that TED speakers do, then your presentations will improve and you stand a
+very good chance of being one of the most memorable speakers wherever you are
+speaking.
+
+*Public Speaking Practicalities*
+
+Of course, if you want to give talks, then you need to find places that will
+let you speak. There are a number of approaches you can take.
+
+* Speak at your company. There are a couple of possibilities here. You could
+offer to give a lunchtime "brown bag" session talking about some new
+technology you're trying out or some interesting feature you've just added to
+your system. Or you could give a more formal talk at one of the big company
+meetings that we mentioned before. Of course, speaking to people in your
+company doesn't really count as external self-marketing, but you can see it
+as practice before you start looking for external speaking opportunities.
+
+* Speak at a local meet-up group. If you search on a site like
+[meetup.com](https://meetup.com/), you will find dozens of meetings taking
+place near you. Many of them will be monthly and all of them will need
+speakers for their meetings. It's likely that some of them will be covering
+subjects that you are interested in, so why not see if they have a spot for
+you to speak in. Find a likely-looking group and join it. Go along to a couple
+of meetings and see what kind of people attend and what sort of talks they
+have. If, after two or three meetings, you think you have something useful
+to share with the group, then approach the organisers and offer them a talk.
+Some groups might be less happy to have talks from inexperienced speakers, but
+I'm confident that you'll find some group nearby that are interested to hear
+what you have to say. And once you've talked at one group, you'll find it
+easier to have your suggestions accepted at another one.
+
+* A lot of local user groups are now using sites like MeetUp to organise
+their meetings, but it's still far from all of them. There will be a number
+of other technical user groups that you can find by Googling for them. You
+might well find they are hold their meetings at a local university or, perhaps,
+at the offices of a local company that likes to promote the fact that it uses
+certain technologies as it then makes them look more attractive to potential
+employees who are part of the communities surrounding those technologies. Once
+you've identified a potential user group then follow the same process as for
+MeetUp groups - go to a few meetings to see what the group is like before
+proposing a talk to the organisers.
+
+* At the top of the speaking tree, we find conferences. Obviously, speaking at
+a large global conference is going to be out of the reach of most new speakers,
+but if you speak at meeting like we've discussed in the previous couple of
+paragraphs, there will soon come a time when you feel you're ready for the big
+time. It's worth realising that the term "conference" covers a really wide
+of events - from one day workshops that are put on by local user groups to
+huge corporate conferences that are run by massive companies and can cost a
+small fortune to attend. As with user groups, you should start by searching
+for conferences in your areas of expertise. They will all have web sites
+showing you where and when the next event is taking place. And in most cases
+they will give you the timetable for the Call for Participation (CFP) which
+is how most conferences ask potential speakers to submit ideas for talks.

@@ -1,4 +1,4 @@
-book = more=than-code
+book = more-than-code
 chapters = $(shell cat chapters.txt)
 
 epub: book

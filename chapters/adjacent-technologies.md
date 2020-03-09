@@ -142,6 +142,79 @@ reasons and you don't want Google to care about it any more, then return a
 
 ### Structured data
 
+Earlier, we talked about using semantic HTML in order to make it easier for
+Google to understand what your content is about. There's another step you
+can take and that's to use structured data on your web pages. There are two
+types of structure data that Google currently recognises - microdata which
+is built into the existing HTML and JSON-LD which is another view of your
+data which you embed into your "head" tag.
+
+Microdata is a way to extend HTML so that it contains more information
+describing the data on the page. For example, you might have some HTML that
+displays information about a film:
+
+    <div class="film">
+      <h1>Avatar</h1>
+      <div class="director">
+        Director: <span>James Cameron</span>
+        (born <time>August 16, 1954</time>)
+      </div>
+      <span class="genre">Science fiction</span>
+      <a href="/movies/avatar-theatrical-trailer.html">Trailer</a>
+    </div>
+
+Your CSS would use a combination of the HTML tags and the classes to tell
+a browser how to display this data. Note, for example, that we've used a "div"
+tag with the class "film" to denote the section of the page that describes a
+film. But that's just a convention that we've invented; it's not standard.
+Some other company might use other conventions - for example a class of "movie".
+Google can't be expected to unpick all of these local conventions for defining
+data.
+
+Microdata is a way to standardise this markup. A microdata version of the same
+information might look like this:
+
+    <div itemscope itemtype="http://schema.org/Movie">
+      <h1 itemprop="name">Avatar</h1>
+      <div itemprop="director" itemscope itemtype="http://schema.org/Person">
+        Director: <span itemprop="name">James Cameron</span>
+        (born <time itemprop="birthDate" datetime="1954-08-16">August 16, 1954</time>)
+      </div>
+      <span itemprop="genre">Science fiction</span>
+      <a href="/movies/avatar-theatrical-trailer.html" itemprop="trailer">Trailer</a>
+    </div>
+
+We've added various attributes to our HTML tags. There are three new
+attributes.
+
+* itemscope defines a new data item.
+* itemtype defines the type of the new data item. This will be a URI, pointing
+to a web address that defines that data item type.
+* itemprop defines a property of a data item. The definition of the data item
+will tell you which properties a particular data item type should or may have.
+
+So, in our example we have a top-level object which is a movie as defined
+at http://schema.org/Movie. The movie has four properties - a name, a director,
+a genre and a trailer. The director is defined as being an instance of a
+new data item type called a person. Our person object has two properties - a
+name and a birthDate.
+
+Google (or, indeed, anyone who is interested) can look at the source code of
+our web page and can immediately get a far richer (and standardised) view of
+our data. As you might expect, there are dozens (probably hundreds) of data
+item types defined and you can model very complicated relationships between
+the various pieces of information on your web page. It's worth spending a
+few hours browsing the https://schema.org/ web site where these types are
+defined. There is an incredibly rich selection of types available.
+
+Microdata is relatively easy to add to your web page. Well, there's the
+complexity of mapping your information onto the types and properties available,
+which can take a while. But once you have that mapping work done, it's not
+hard to add the relevant mark-up to your existing HTML. The structured data is
+woven tightly around the HTML. In contrast, JSON-LD (LD stands for "Linked
+Data") is a rather different approach where very similar structured data
+is embedded in a completely different part of the HTML.
+
 ### Sitemaps
 
 ### Open graph

@@ -5,6 +5,157 @@ skill set, but that are very closely associated with programming and which a
 serious programmer will take a close interest in. In this chapter, we'll look
 as some of the most useful of these technologies.
 
+## User interface design
+
+## Search engine optimisation
+
+If the system you work on powers a web site, then it's likely that you would
+like to get as many visitors as possible to the site. And that means you will
+want the site to rank as highly as possible in the Google results for various
+search terms. And that will lead you to the world of search engine
+optimisation.
+
+On larger projects, you will probably have a separate SEO team to work on this.
+They will monitor your site's performance and suggest changes to be made by
+the developers. But on small projects the developers might be expected to
+carry out this work. And, even when you do have experts on-hand to suggest
+the required changes, it's still worth knowing a little about what can affect
+your site's ranking in Google.
+
+There are basically two strands to SEO. There's the "content marketing" side,
+which is all about tweaking the text on your site so that it contains enough
+of the keywords you are trying to rank for. This is a delicate balance between
+ensuring that Google recognises the keywords in your text and ending up with
+content that is still readable English. I'm sure we've all read Google
+keyword-heavy pages where the Google keywords appear so frequently that the
+Google keywords overwhelm the text and it becomes hard to understand because
+of the repetition of the Google keywords.
+
+Other than cautioning you to do your best to keep your text readable, I'm not
+going to talk about that side of SEO; I'm going to concentrate on techinical,
+or "on-page" SEO. This is all about small tweaks you can make to the structure
+of your page so that Google stands more chance of understanding what your
+content is about.
+
+### Semantic HTML
+
+HTML mark-up is supposed to be semantic. That is, you use HTML to mark-up
+the *meaning* of the various sections of your page. It is the browser (with
+help from your CSS files) that decides what your page looks like. For example,
+the most important header on your page should be marked as H1, the next most
+important headers should be H2, and so on. Don't make the mistake that a
+web designer that I worked with twenty years ago made. Because he wanted the
+main header to be the size that his browser showed an H3, he made the main
+header an H3. To be fair to him, CSS was a relatively new technology and I
+don't think he really got it.
+
+Another example from the days before CSS is the "font" tag. In the days before
+CSS (and, to be honest, for a depressingly long time after the introduction
+of CSS) HTML pages were full of font definitions. Every block element needed
+its own font tag. And when you wanted to change the font that your page used
+then you needed to edit every single one of them.
+
+HTML uses tags that can be used to describe the parts of your text - headers,
+footers, paragraphs, sections. HTML5 added a lot more that many people don't
+seem to be aware of. When you mark up your page correctly with these tags,
+Google can use them to work out the structure of the page. If you fail to do
+that, then Google is just guessing at the relationship between the various
+pieces of text on your page - and the algorithm might guess wrong.
+
+### URLs
+
+A Universal Resource Locator (URL) is the web address of your page. Often,
+URLs are disguised from users as, for example, they are hidden behind the text
+in an HTML link. You might think, therefore, that URLs aren't very important.
+But they can be important to Google, so they should be important to you. You
+should be thinking carefully about your URL structure.
+
+In short, a good URL should be meaningful, hackable and permanent. Which is
+the most memorable of these two URLs?
+
+* https://morethanco.de/upcoming-public-training
+* https://morethanco.de/?p=68450021
+
+Clearly, the former is more meaningful. It's easier to understand and,
+therefore, easier to remember. It's not only more meaningful for humans; it's
+also more meaningful for Google. Google will try to extract from a URL useful
+information about the page that the URL refers to. And the second example
+gives no clue at all about what will be found at that address.
+
+In general, simple URLs are to be prefered. Use words instead of meaningless
+strings of numbers. It's also worth trying to avoid having anything in your
+URLs that gives away information about the technologies that are driving your
+your site (like `some-page.php` or `another-page.asp`). The only people who
+might find that information useful are unscrupulous people trying to look for
+backdoors into your server.
+
+What does it mean for a URL to be hackable? Well, take an (imaginary) URL like:
+
+* https://morethanco.de/news/2020/03/some-seo-tips
+
+For a start, you can extract useful information from the URL. We can see what
+the article is about, the approximate date of publication and, also, that it
+was a news story. But we can also get clues to other URLs that might be
+interesting. It seems likely that visiting https://morethanco.de/news will
+show us a list of the most recently published news stories. And I'd expect
+that https://morethanco.de/news/2020 will show all of 2020's news and
+https://morethanco.de/news/2020/03 will give me all of the stories published
+in March 2020. A power user will certainly try visiting those pages. And Google
+will expect them to exist too. So when your URL structure implies the
+existence of a page, you should ensure that the page actually exists.
+
+Finally, a good URL should be permanent. I'm addicted to Facebook's Memories
+application. Every day, it shows me a list of Facebook items that I posted
+on that day in previous years. And it's depressing how many of the interesting
+links that I posted for the amusement of my friends no longer exist. These
+dead links fall into two categories.
+
+First there are the sites that just no longer exist. Perhaps a company closed
+down or a developer got bored of a side-project and just let the domain lapse.
+One particular friend has used a number of different domains for his blog over
+the last fifteen years. And each time he moves to a new domain, he doesn't move
+the old content over. I'd be gutted to lose all of the content, but some people
+have a different relationship with their writing. There's nothing that can
+be done in situations like these. If you no longer own the domain then you
+can't put anything in place to respond to request to that domain.
+
+Then there are the pages where the domain still exists, but some individual
+pages no longer exist. A good example is an arts venue that chooses not to
+maintain pages for previous events. I often come across an old Facebook post
+that contains a link to a page about a gig I was going to or a exhibition I
+was planning to see. But because the event was ten years ago, the venue doesn't
+see the value in maintaining that page (or, more likely, just doesn't have the
+resources to maintain old pages). Probably, they've reorganised the site a
+couple of times in the intervening years - and old event pages just didn't
+make the cut to be migrated to the new structure. It's a shame, but you can't
+argue with the economics.
+
+But permanence does matter. Longevity is one of the criteria that Google uses
+to measure the importance of a page. And you don't want to be serving 404
+"page not found" errors to users if you can avoid it. Far better to redirect
+users to your home page or (even better) a search page where they can look for
+the content they're trying to find. If you rearrange your site, then map the
+old URLs to the new ones and set up mechanisms to redirect the users to the
+new version of the page. If a page has been removed from your site for good
+reasons and you don't want Google to care about it any more, then return a
+410 "gone away" response.
+
+### Structured data
+
+### Sitemaps
+
+### Open graph
+
+### Link tags
+
+### robots.txt
+
+### Response headers
+
+### nofollow
+
+### Security
+
 ## Data storage
 
 All systems use some kind of data. And that data is probably going to need

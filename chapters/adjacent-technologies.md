@@ -215,19 +215,223 @@ woven tightly around the HTML. In contrast, JSON-LD (LD stands for "Linked
 Data") is a rather different approach where very similar structured data
 is embedded in a completely different part of the HTML.
 
+In order to build a JSON-LD representation of our page, we still have to go
+through the same mapping process, using the same set of data item types. But
+when we have finished the mapping, we build a JSON data structure instead of
+embedding the information within our HTML. The JSON-LD version of our film
+data might look like this:
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Movie",
+      "name": "Avatar",
+      "director":
+      {
+        "@type": "Person",
+        "name": "James Cameron",
+        "birthDate": "1954-08-16"
+      },
+      "genre": "Science fiction",
+      "trailer": "/movies/avatar-theatrical-trailer.html"
+    }
+    </script>
+
+You will recognise the two data items (a movie and a person) and all of the
+properties that we used in the microdata version. This is just another
+representation of the same information. This chunk of JSON should be inserted
+somewhere in your HTML page. Google recommends putting in the "head" section,
+but the "body" sections works too if that is easier for you.
+
+Google provides a structured data testing tool at
+https://search.google.com/structured-data/testing-tool. You can give it the
+URL of your page or paste in a piece of structured data and the tool will show
+you all of the data items and properties it can extract from the sample. It
+will also tell you about any problems it finds with your structured data.
+This usually consists of information about missing properties that you should
+consider adding.
+
+### Open Graph
+
+Open Graph is a standard that was defined by Facebook in order to make it
+easier to share external content on its site. It consists of a number of extra
+header tags that give useful information about the page. This means that, for
+example, Facebook can find an image to display alongside a link without having
+to parse the entire page. A simple set of Open Graph tags looks like this:
+
+    <meta property="og:title" content="Some SEO Tips">
+    <meta property="og:site_name" content="More Than Code">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://morethanco.de/news/2020/03/some-seo-tips">
+    <meta property="og:image" content="https://morethanco.de/images/seo.png">
+    <meta property="og:description" content="SEO is important. Get some useful tips here.">
+
+Most other social media sites will also make use of this information. Twitter
+has a slightly different concept called a "Twitter Card". They will use the
+Open Graph data, but it's worth adding the following Twitter-specific tags as
+well.
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://morethanco.de/images/seo.png"/>
+
+As far as I know, Open Graph tags don't, in themselves, increase your site's
+Google ranking. But by tuning how links to your appear when they are shared,
+you can encourage more people to share your content and popular content is
+prefered by Google.
+
 ### Sitemaps
 
-### Open graph
+A sitemap is a file that sits in the top level directory of your web and
+contains a list of all of the pages on your site that you want Google to
+crawl. It is an XML file. Here is an example:
 
-### Link tags
+    <?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://morethanco.de/news</loc>
+        <lastmod>2020-03-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://morethanco.de/services</loc>
+        <lastmod>2020-03-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    </urlset>
 
-### robots.txt
+The top level element is "urlset" and, within that, you have a number of "url"
+elements. Inside the "url", you only need the "loc" element (to tell Google
+where the page is) but you can also give Google hints on how to crawl your
+site by including the last modification date, the (approximate) change
+frequency and a number between zero and one indicating how important you think
+the page is.
 
-### Response headers
+A sitemap file has a limit of 50,000 URLs. For many sites that is plenty, but
+if you have a particularly large site, you can have multiple sitemaps and also
+a sitemap index file which shows Google where to find them. The contents would
+look like this:
 
-### nofollow
+    <?xml version="1.0" encoding="UTF-8"?>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <sitemap>
+        <loc>https://morethanco.de/sitemap1.xml.gz</loc>
+        <lastmod>2020-03-10</lastmod>
+      </sitemap>
+      <sitemap>
+        <loc>https://morethanco.de/sitemap2.xml.gz</loc>
+        <lastmod>2020-03-09</lastmod>
+      </sitemap>
+    </sitemapindex>
 
-### Security
+The fields in this file should be self-explanatory, but notice that the
+sitemap files can be zipped in order to save space.
+
+## Canonical pages
+
+Google doesn't like duplicate content. If different URLs on your site point
+to pages that look substantially the same, then Google might think you are
+trying to game the system and could penalise your site. There may be good
+reasons to have different URLs for the same page, so Google allows you to
+mitigate this by telling them which is the canonical version of the page.
+
+Imagine you're running a site that lists athletics world records. I can go
+to the URL https://your-records-site/ and it will show me a list of the current
+world records in a number of events. Or I can go to
+https://your-records-site/2000-01-01 and it will show me the same records as
+they stood on 1st January 2000.
+
+World records don't change very often. It's likely that the page I get for
+https://your-records-site/2000-01-01 is identical to the one for
+https://your-records-site/1999-12-31. In fact most of your pages would be
+duplicates of the pages just before and after them. And Google wouldn't be
+happy about that.
+
+To get round this, we need to generate a list of canonical pages. That is,
+a list of the dates when a record changed. The pages for those dates will be
+the only unique pages on the site. On pages that aren't canonical, we can
+include a header tag, telling Google that we know about the duplication but
+that we only want them to index the unique pages on the site. The tag looks
+like this:
+
+    <link rel="canonical" href="https://your-record-site/1999-06-30">
+
+Here, we've assumed that a record changed on 30th June 1999. So any page for
+date between then and the next record change date would include this tag. This
+is us saying to Google "yes, I know that this page looks a lot like the one
+for 30th June 1999, so please don't index this one but just index that other
+page instead". And that will prevent Google from being suspicious of the
+duplication.
+
+There are many reasons why you might have duplication. Some others include:
+
+* You're in the process of moving from one domain to a new one (the pages
+on the old domain should have a canonical tag pointing to the version on the
+new domain).
+* You're switching your site from HTTP to HTTPS (the HTTP versions should have
+a canonical tag pointing to the HTTPS version).
+* You have a page of lists and various filtering and sorting options that are
+included in the URL can result in similar pages (all version should include
+a canonical tag pointing to the unfiltered and unsorted version).
+
+It's perfectly possible for a page to include a canonical tag that points to
+itself. This often makes the developer's life easier as he can include a
+canonical tag on every page - whether or not that page is, itself, canonical.
+
+## Other features
+
+There are a number of other SEO tweaks that you can make to your site.
+
+* robots.txt: The main use of a robots.txt file is to give web crawlers advice
+about which parts of your site they should crawl. But there are other things
+that you can do in the file. For example, you can use the "Sitemap:" statement
+to tell crawlers where you site maps are.
+
+* Response headers and meta tags: There are a number of response header that
+you can use to control how your site is crawled. Each response header has an
+equivalent meta tag that you can use if you're not able to control your site's
+response headers. The "X-Robots-Tag:" header can be set to "index" or
+"noindex" along with "follow" or "nofollow". The former controls whether a
+crawler will index the current page and the later controls whether links in
+the current page should be followed.
+
+* Security: For some years now, all browsers have been trying to gently nudge
+web site owners towards serving their content over HTTPS instead of HTTP.
+Recently, that has been stepped up as some browsers have started to display a
+warning on HTTP pages. And Google gives a ranking boost to pages served over
+HTTPS. You should be using HTTPS and when someone tries to access your site
+over HTTP, you should redirect them to the HTTPS version.
+
+* Mobile first: A couple of years ago, Google announced that they would start
+crawling mobile versions of web sites and using those results in preference to
+the desktop version. They've been taking this slowly and emailing site owners
+when they are taking a mobile-first approach to their sites. But later this
+year, they plan to make this switch for every site. Your site should give
+equivalent experiences to people using mobile devices and desktop devices. The
+best approach is probably to have a responsive site that automatically adjusts
+to the size of the display it is being used on.
+
+### How well are you doing?
+
+Google supplies tools that you can use to see how well your site is performing.
+Most people have probably heard of
+[Google Analytics](https://analytics.google.com/). You just drop a small
+piece of Javascript on every page of your site and Google will give you as much
+information as you need about the people who visit your site - where they came
+from, what they were searching for, how long they stayed, which pages they
+visited. It will also give you lots of demographic information about them.
+
+But there's is also the
+[Search Console](https://search.google.com/search-console). This is where
+Google tells site owners how it has crawled their sites. You register your
+sites with this service and, within days, you will start to get reports on
+any problems that Google's crawler has found on your site. It will also tell
+you how many pages Google has crawled and how many of those are currently in
+Google's index. This is an essential tool for webmasters who want to get as
+much information as possible about how Google sees their site. There was an
+older version of this site called "Google Webmasters Tools", but this new site
+has been replacing that over the last two or three years.
 
 ## Data storage
 
@@ -303,22 +507,260 @@ XML
 
 ## Networking
 
-* What networking protocols do you use?
-* How well do you know them?
-* Do you understand the seven layer model?
+There are very few systems these days that don't use networking in some way.
+Some of the more obvious networking protocols that you might come across
+include:
 
-HTTP
+* SSH (secure shell) and SCP (secure copy) for getting shell access to remote
+servers and for copying files to and from them.
+* SMTP (simple mail transfer protocol) and IMAP (internet message access
+protocol) for sending and receiving email.
+* HTTP (hypertext transfer protocol) and its secure version, HTTPS, for
+handling web requests.
+* DNS (domain name system) for translating human-readable domain names to
+computer-useable IP addresses.
 
-* Most common networking protocol
-* Can you explain the request/response cycle
-* What difference does HTTPS/SSL make?
-* Can you name all of the HTTP request types?
-* GET, POST, HEAD
-* PUT, DELETE, PATCH
-* OPTIONS, TRACE, CONNECT
-* What are the differences?
-* What are they used for?
-* REST
+Other, less well known protocols that you might see include:
+
+* FTP (file transfer protocol) has been superseded by SCP - as it's more secure.
+If you come across somewhere that still uses FTP, you might question their
+attitude to security.
+* POP (post office protocol) is an older mail retrieval protocol.
+* NTP (network time protocol) for ensuring that all of the servers connected
+to a network have their clocks in sync.
+* SNMP (simple network management protocol) is a way to gather information
+about the devices that are connected to a network.
+
+In most cases, a networking protocol is a well-defined series of requests and
+responses that take place between a client and a server. The client sends a
+request to the server and the server responds with some information. This
+cycle takes place on a certain "port", which is a numbered communication
+channel where a server will listen for requests. Each protocol has one or two
+well-known ports that it runs on. An SSH server, for example, will listen on
+port 22 and an HTTP server will listen on port 80.
+
+The instructions that drive these conversations are usually plain text. It can
+often be interesting to manually play the part of the client yourself. One
+common tool for doing this is called `telnet`. This command line program has
+largely been superseded by `ssh` (because it's more secure) but it can still
+be installed on most systems.
+
+If you run `telnet some.server` then you connect to "some.server" on port 23
+(the default port for the telnet protocol) but you can give it another port
+number as a second argument and you will then be talking directly to whatever
+server is listening on that port. For example, to talk HTTP to web server,
+telnet to port 80:
+
+    $ telnet morethanco.de 80
+    Trying 185.199.109.153...
+    Connected to morethanco.de.
+    Escape character is '^]'.
+
+You can then type any request that you would expect an HTTP server to
+understand (note that HTTP requires an empty line to end the request, so you
+need to hit the enter key twice):
+
+    HEAD / HTTP/1.1
+
+    HTTP/1.1 404 Not Found
+    Server: GitHub.com
+    Content-Type: text/html; charset=utf-8
+    ETag: "5cb0f185-239b"
+    [... more omitted ...]
+
+It doesn't happen everyday (or even every week) but when I really want to know
+what's going on in a network interaction, I often find it useful to debug it
+using `telnet`.
+
+### Seven-layer model
+
+Networking is traditionally described as containing seven layers. This is
+useful as for a specific problem, you usually only need to think about one or
+two of these layers at a time. As a developer, that's probably the application
+layers - most of the time, you can assume that all of the other layers Just
+Work.
+
+It is, however, useful to know what the other layers are in order to hold a
+meaningful conversation with any network engineers who might be helping you
+to solve a problem. The seven layers are:
+
+1. Physical layer. This is the cables, boxes and wifi transmissions that
+actually make up the physical network.
+1. Data link layer. This is the protocol that provides data transfer between
+two adjacent nodes in your network.
+1. Network layer. This is the protocol that allows data to be transmitted
+between different physical networks.
+1. Transport layer. This is the protocol that allows data to be transmitted
+from a source host to a destination host.
+1. Session layer. This is the protocol that defines seemingly-persistent
+connections between clients and servers.
+1. Presentation layer. This is the protocol that formats application data for
+transmission across a network.
+1. Application layer. This is where all of the application-specific network
+protocols we discussed above sit.
+
+### HTTP
+
+HTTP, and its more secure cousin, HTTPS has become one of the most ubiquitous
+networking protocols in our modern world. Not only is it used whenever someone
+visits a web page, but it's also the most common mechanism used for API calls
+and most "Internet of Things" devices will use HTTP to communicate with each
+other.
+
+At its core, HTTP is a simple request/response cycle. An HTTP client (which
+is often a browser) makes a request to a server and the server returns some
+data. Both the request and response consist of a number of headers separated
+from the body by a blank line. We saw a simple request/response example above.
+The request looked like this:
+
+    HEAD / HTTP/1.1
+
+And the response looked like this:
+
+    HTTP/1.1 404 Not Found
+    Server: GitHub.com
+    Content-Type: text/html; charset=utf-8
+    ETag: "5cb0f185-239b"
+    [... more omitted ...]
+
+The `HEAD` command is the simplest of the HTTP request types and it generates
+one of the simplest responses. It specifically only asks for the header portion
+of the response. And, because this was a request that I typed in manually in
+`telnet`, I gave it the bare minimum request - just a command, with no headers.
+
+The full specification of a request is:
+
+* A request line, consisting of a command (`HEAD`), the path of a resource
+on the server (`/` - which is the top-level resource) and the version of
+HTTP to use (`HTTP/1.1`).
+* A number of optional header lines. These consist of a header name, a colon
+and a value. For example, you might tell the server that you only want HTML
+returned using an "Accept" header - `Accept: text/html`.
+* A blank separator line.
+* A optional body which can contain data that you wish to transfer to the
+server (for example, a file upload).
+
+A response is very similar. In place of the request line, it has a status
+line which includes the HTTP version, a status code and a brief message. The
+header lines will define details like the content type
+(`Content-Type: text/html`) and the body will contain the actual data for the
+resource (with the obvious exception of the response to a HEAD request which
+will only contain headers).
+
+The response status codes fall into five groups. Each code is a three-digit
+number and the first digit tells you which group the code belongs to.
+
+* 1xx (Informational): You don't see many of these.
+* 2xx (Success): These tell you that the server accepted and processed your
+request successfully. The most common of these is "200 OK".
+* 3xx (Redirection): These tell you that you should make an additional request
+to an alternative URL which will be in the "Location" header. In most cases,
+a browser will make the redirected request for you.
+* 4xx (Client error): These tell you that you have made a mistake in your
+request which you need to correct before resubmitting the it. The most common
+of these is "404 Not Found", but "403 Forbidden" is also seen quite often when
+you don't have permission to access a particular page.
+* 5xx (Server error): These tell you that something has gone wrong on the
+server and there is probably nothing you can do about it. The most common is
+"500 Internal Server Error" which is pretty generic.
+
+There are a number of different HTTP commands available. The most commonly
+used ones are:
+
+* GET: returns a representation of the resource at the given path.
+* POST: sends data to the server in the body of the request. The path in the
+request line will tell the server what to do with the data.
+* HEAD: returns only the headers of the equivalent GET request.
+
+You're doing well if you could also name the next three:
+
+* PUT: is similar to POST, except POST is expected to contain new data to be
+stored on the server and PUT is expected to contain a replacement for existing
+data.
+* DELETE: asks the server to delete a resource.
+* PATCH: supplies partial modifications to a resource.
+
+And almost no-one (in my experience) knows about these:
+
+* OPTIONS: asks the server to return a list of the commands that the it
+supports for the given path.
+* TRACE: returns the request that the server received. This is useful for
+debugging as you will be able to see any modifications that might have been
+made to the request by intermediate servers.
+* CONNECT: converts the transient HTTP connection to a TCP/IP tunnel. This one
+is pretty obscure.
+
+A standard web application will usually only use GET (to display a web page)
+and POST (to send the contents of a web form). This is slightly unintuitive as
+you can find yourself using a GET or POST request to delete data from the
+server. If you're writing an API, however, you should make use of a wider
+range of HTTP commands. If you consider your API as a query tool to a database,
+then there are four operations you will need to carry out on the data stored
+in that database.
+
+* Create - to add a new data object to the database.
+* Read - to retrieve an existing data object.
+* Update - to change the attributes of an existing data object.
+* Delete - to remove a data object from the database.
+
+These are known as the CRUD operations and they map rather nicely onto four
+of the HTTP commands.
+
+* POST - to create a new data object.
+* GET - to read an object.
+* PUT - to update an object.
+* DELETE - to (rather obviously) delete an object.
+
+One common-used approach to creating an API is called Representational State
+Transfer (REST for short). One of the tenets of REST is to use the four HTTP
+commands listed above to handle the CRUD operations on your data. So if, for
+example, you had an API which contained details of films you would want to
+support the following API calls.
+
+* POST /films - to create a new film. The request body would contain a
+representation of the various attributes of the new film. The response to this
+request would echo back this representation, adding any new attributes that
+were added as the record was created - this would almost certainly include
+the identifier for the new record and the URL where the new record can be
+accessed.
+* GET /films/999 - to read details of the film with the identifier 999.
+This would return a representation of the film (which would probably be very
+similar to the representation returned by the original POST request).
+* PUT /films/999 - to update the details of the film with the identifier 999.
+The body of the request would include a representation of the attributes of
+the record that have changed.
+* DELETE /films/999 - to delete the film with the identifier 999.
+
+You can also make more precise use of HTTP status codes when writing a REST
+API. For example, instead of just returning "200 OK" from a POST request, you
+should return "201 Created" to indicate that the object was created
+successfully. A web framework called [webmachine](http://webmachine.github.io/)
+provides a comprehensive mechanism for returning the correct status code for
+a given sitution. They provide a
+[state transition diagram](http://webmachine.github.io/diagram.html) that
+nicely demonstrates the complexities.
+
+![REST State Transition Diagram](http://webmachine.github.io/images/http-headers-status-v3.png)
+
+### HTTPS
+
+HTTPS is a secure version of HTTP. It supports everything that HTTP does and
+builds a secure socket layer (SSL) on top of that. With standard HTTP, all of
+the data that passes between the client and the server is unencrypted and
+anyone who could intercept that traffic could see the information. With HTTPS,
+the data is encrypted using keys that the client and server share, so that
+only the client and the server can see the data.
+
+At the very least, whenever a user is sharing confidential information with
+your web site (passwords or credit card details, for example) that form should
+be served using HTTPS. A few years ago, browsers started to indicate that a
+page was secure by displaying a padlock icon in the URL bar but, more recently,
+this has started to switch to displaying a warning when a page is not served
+over HTTPS. Presumably, you don't want your users to see these warnings when
+they visit your site, so the best approach is to server all of your pages
+over SSL and to redirect anyone requesting a page over HTTP to the secure
+version. With organisations like Let's Encrypt issuing SSL certificates for
+free, there's really no reason not to do that.
 
 ## Testing
 
@@ -376,20 +818,57 @@ Test coverage
 
 ## Deployment
 
-* How is your system deployed?
-* Where are you servers located?
-* Do you care? Should you care?
+Sooner or later, your code will need to be deployed into an environment where
+it is available for your users to access. Previously, it was unlikely that,
+as a developer, you would have much to do with this deployment process, but
+the move towards DevOps personal being embedded in development teams makes it
+far more likely that you will need to understand this part of the process.
 
-Deployment environments
+### Deployment environments
 
-* Development
-* Integration
-* Staging
-* Production (x2?)
+It's likely that your code will go through a number of different environments
+before it gets into production. Not all companies will have the same set, but
+the four environments listed below seem to be fairly common.
 
-* How is code moved from environment to environment?
-* How similar are those environments?
-* How are they kept in step?
+* Development: This is where you will do your development. It will hopefully
+be an environment that only you are working on. Every developer should have
+their own development environment. This can be running locally on the
+developer's own machine or somewhere remote (on a share development server or,
+perhaps, in the cloud).
+
+* Integration: Once a developer thinks a feature is ready for production, it
+will need to be tested on an integration environment. This is where all of the
+features that are intended to be included in the next release can be tested
+togther. This will ensure that new features which have been developed in
+parallel since the previous release don't affect each other in strange ways.
+
+* Staging: When a release candidate has been thoroughly tested in the
+integration environment, a release is built and deployed to the staging
+environment. This is built to be as much like the production environment
+as possible and is a place where you can test the release one final time to
+ensure that it works as expected.
+
+* Production: This is the live environment from where your users access your
+server. Once your release hits this environment, it is officially released.
+There will normally be at least two instances of this environment. This is
+mostly for resilience (in case one environment goes down for some reason) but
+can also help with scalability and, sometimes, teams use multiple production
+environments to help with staged releases.
+
+That's a lot of environments. One development environment for each developer
+on the project. Probably an integration environment for each team or each
+major component of the system. At least one staging environment and at least
+two production environments. Just keeping that number of environments up and
+running will be a major headache. Keeping them all in step with each other
+will be worse.
+
+We also need to consider exactly how code is moved from one environment to
+the other and what quality gates we place at each transition to ensure that
+only working code gets moved through the process.
+
+There's also the question of the databases for these various environments.
+It seems unlikely that you will want a full database dump on all of the
+development or integration environments.
 
 * How are databases handled in the various environments?
 * Full database dump?

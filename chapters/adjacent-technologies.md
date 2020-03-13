@@ -868,12 +868,93 @@ only working code gets moved through the process.
 
 There's also the question of the databases for these various environments.
 It seems unlikely that you will want a full database dump on all of the
-development or integration environments.
+development or integration environments. It's not just the size of the live
+database that could cause problems here, there's also the the fact that this
+database will contain personal data about your customers that the development
+team should not have access to.
 
-* How are databases handled in the various environments?
-* Full database dump?
-* Smaller data sets?
-* Anonymised data?
+But the live database has a richness of data that you will never find if you
+create a specific development database with mocked up data. Whoever creates
+the test data will never be able to reproduce the complexities of the data
+that is found in your live database. So it is certainly useful to seed your
+development database from the production database in some way. In order to
+work round the two problems of database size and customer privacy, you will
+want to take a dump of the production database and massage it in two ways
+before making it available to developers.
+
+1. Remove some percentage of the data. Perhaps only include data about 25%
+of your customers and your products.
+1. Anonymise the data so that anyone getting access to the database cannot
+see confidential information about your real customers.
+
+I've seen this approach taken in a number of companies. It is never as easy
+as you initially think it is. Getting this set up to work well is a major
+development project. But it's one that it is well worth taking the time to
+get right. Once you have got it right, you should run that process on a
+regular basis (perhaps weekly) and give your developers a single command that
+will overwrite their development database with the latest cleaned-up dump.
+
+There is also the question of how frequently a developer updates their
+development system with an up to date version of this database. A production
+database system isn't static. As new features are developed, new tables are
+created in the database, columns are added to existing tables and the
+definitions of existing columns are changed. Your development process can
+become fragile if a developer is using an older version of the database schema.
+
+I've often seen developers set up their development database in their first
+week at a company and then never refresh it. They will make the changes to
+their database that are required by the work they are doing. But unless they
+also apply the changes that other teams are also making, their database will
+slowly fork from the production version. How do you address that?
+
+The best approach is probably to insist that all schema changes are carried
+out using database migrations. A migration is a small program that makes a
+set of changes to a database schema. Usually this will be the set of changes
+required to add an enhancement or fix a bug. A migration will include the code
+to apply the migration to the schema alongside the code to roll it back. The
+migrations for a system will all be numbered in an ascending sequence and
+the source code for the migrations will be stored in an easily-accessible
+place (perhaps in a directory that is part of your source code repository).
+
+The database itself contains a table which has data indicating the current
+schema version number and migrations are applied using a program which takes
+as an argument, the version of the schema that you want to end up with. The
+program then compares the required number with the version currently on the
+database server and applies (or rolls back) the necessary migrations to get
+to the correct version. A nice extra feature is for your application's
+configuration file to contain the schema version that the current version of
+the application requires and for the application to check it's connecting to
+a database with the correct version of the schema each time it starts up.
+
+The sequence of events then goes like this:
+
+* A new developer joins the company and sets up a development system. This
+includes a development version of the database which is marked as being version
+15 of the schema. The new developer checks out the latest version of the
+application and it requires schema version 15. The developer can therefore
+run the application against this version of the database.
+
+* The developer spends a month working on projects that don't require any
+changes to the database. But, occasionally, other developers will make changes
+to the schema. When the developer merges a code branch that contains a new
+migration, the application shows an error and will not start until the database
+is running the correct version of the schema. This can be done by either
+running the migration program or by reloading the entire development database
+from the latest available dump.
+
+* When the developer works on a project that requires a database change, he
+creates a migration for the changes and includes that in the commit with the
+code changes (and, also, an update to the configuration telling the application
+that it needs the new version). Once those changes have been released, that
+new migration (along with the code and configuration changes that require it)
+are in the main branch of the version control system and are available for
+any other developers.
+
+By following a procedure like this, it's possible for developers to have their
+own development database which is easy to keep up to date with the released
+version of the schema. This minimises the changes of two developers making
+contradictory changes to the schema that aren't found until the release hits
+the integration or staging environments.
 
 Deployment options
 

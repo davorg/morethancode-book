@@ -449,6 +449,64 @@ example XML.
 
 ### Relational databases
 
+A very large proportion of computer systems (probably most of them) will have
+some kind of relational database system to store their data. A large,
+commercial system will probably use a proprietary system like Oracle, but it's
+very common to see open source databases like MySQL, PostgreSQL and SQLite
+being used as well.
+
+You might be surprised to hear that the most widely-used relational database
+system today is SQLite. This is because it's a very lightweight implementation
+of the relational model and is therefore the database system of choice for
+smartphones. Pretty much any app that you install on your Android or Apple
+phone will be using an SQLite database to store its data.
+
+#### Introduction to relational databases
+
+The idea of relational databases started to become popular in 1970 when IBM
+employee, Ted Codd, published his paper "A Relational Model of Data for Large
+Shared Data Banks". This used a relatively obscure branch of mathematics,
+called relational calculus to derive a mechanism for storing large amounts of
+data.
+
+In Codd's paper, data is stored as tuples which are gathered together in
+relations. A tuple contains all of the data items about one particular object
+(for example the name, date of birth and sex of a person) and a relation
+groups together all of the data about objects of the same type (for example
+data about all of the people your system is interested in). These days, it is
+more common to talk about a table which holds data about people and a single
+row in that table which holds the data about an individual person.
+
+A table is defined by the set of attributes (or columns that it contains).
+Each attribute has a name and a data type. The data type defines the valid
+values that can be stored in that column. We use a data definition language
+(DDL) to define a table. The definition for our example table storing data
+about people might look like this:
+
+    CREATE TABLE person (
+      name CHAR(50),
+      date_of_birth DATE,
+      sex ENUM('M', 'F')
+    );
+
+The table is called "Person" and it has three columns.
+
+In practice, you will also want some kind of unique identifier for each row
+in the database. There are various mechanisms for allocating those. The
+simplest (and probably the most common) is to allocate the next integer in an
+ascending sequence as a record is inserted into the table.
+
+Your DDL will also allow you to define more advanced aspects of your data.
+For example, there might be inherent uniqueness constraints in your data.
+There are no obvious uniqueness constraints in our current table (it's
+perfectly possible for people of the same sex and with the same name to be
+born on the same date) but if we also included a person's government-issued
+tax identifier, then that would need to be unique.
+
+* The person's name is consists of up to fifty characters.
+* The date of birth must be a valid date
+* The sex is an enumerated value that can only be 'M' or 'F'
+
 * Which database vendor do you use?
 * Why did you choose MySQL?
 * Would PostgreSQL be better?

@@ -494,7 +494,15 @@ The table is called "Person" and it has three columns.
 In practice, you will also want some kind of unique identifier for each row
 in the database. There are various mechanisms for allocating those. The
 simplest (and probably the most common) is to allocate the next integer in an
-ascending sequence as a record is inserted into the table.
+ascending sequence as a record is inserted into the table. So the table will
+probably look more like this:
+
+    CREATE TABLE person (
+      id INT,
+      name CHAR(50),
+      date_of_birth DATE,
+      sex ENUM('M', 'F')
+    );
 
 Your DDL will also allow you to define more advanced aspects of your data.
 For example, there might be inherent uniqueness constraints in your data.
@@ -503,9 +511,49 @@ perfectly possible for people of the same sex and with the same name to be
 born on the same date) but if we also included a person's government-issued
 tax identifier, then that would need to be unique.
 
-* The person's name is consists of up to fifty characters.
-* The date of birth must be a valid date
-* The sex is an enumerated value that can only be 'M' or 'F'
+So the table definition above says that we will be storing data about people.
+The data we will store about each person is as follows:
+
+* The person's identifier, which is an integer
+* The person's name, which consists of up to fifty characters
+* The person's date of birth, which must be a valid date
+* The person's sex, which is an enumerated value that can only be 'M' or 'F'
+
+As it stands, our table doesn't insist on any of those values being filled in.
+In a relational database, a column without a value is said to contain the
+special value "NULL". We can change our table definition to prevent null
+values from appearing in certain columns. We do that by adding "NOT NULL" to
+the table definition.
+
+    CREATE TABLE person (
+      id INT NOT NULL,
+      name CHAR(50) NOT NULL,
+      date_of_birth DATE NOT NULL,
+      sex ENUM('M', 'F') NOT NULL
+    );
+
+Here, we've said that none of our columns can be empty. An important part of
+the database design process is deciding which data items are optional. And
+now we can start to see some of the complexities of data design. We know that
+the id column must be mandatory (because we're going to assign that value to
+each record that is added) but what about the others? It seems unlikely that
+we'll be storing data about a person without a name, so it's sensible to
+make that value mandatory. But what about the date of birth and sex? Do we
+really need those values for everyone? Do we actually need those values for
+anyone? Of course the answers to these questions will depend completely on
+what this database is being used for. If it's being used to calculate tax
+payments, then you might well need to know the age and sex of the person you're
+dealing with. If it's storing genealogical research, then it's quite possible
+that you want to store data about people whose date of birth you don't know.
+
+The table also contains a good example of where theoretical database design
+just doesn't work in the real world. We've said that a person's sex can only
+be 'M' or 'F'. But that's not how it really works. Some people are intersex.
+Some people are non-binary. Some people will be transitioning. Some people
+just won't want to tell you. What do you do in those situations? Do you add
+a whole list of other options to the ENUM? Do you just add 'O' for 'other'?
+Do you make the value optional? Only you know what your data is being used
+for, so only you can answer those questions. But please try to be sensitive.
 
 * Which database vendor do you use?
 * Why did you choose MySQL?

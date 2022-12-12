@@ -26,12 +26,85 @@ there are many more options to consider. I'm currently using
 often seem to use [Notepad++](https://notepad-plus-plus.org/) and
 [Sublime Text](https://www.sublimetext.com/) is popular on MacOS.
 
-Programmer's Editor
+### Programmer's Editor
 
-* Use a real programmer's editor
-* Get to know the features
-* Take time to become an expert
-* You will save time in the end
+A programmer's editor is a type of text editor that is specifically
+designed for software development. Unlike a general-purpose text editor,
+a programmer's editor includes a number of features that make it easier
+to write and edit code. Here are some of the key advantages of using a
+programmer's editor for software development:
+
+**Syntax highlighting:** One of the most useful features of a programmer's
+editor is syntax highlighting, which is a visual formatting of the text
+that makes it easier to read and understand. Syntax highlighting
+automatically assigns different colors to different elements of the code,
+such as keywords, comments, and strings. This makes it easy to identify the
+different parts of the code at a glance, and can help you spot errors and
+inconsistencies more quickly.
+
+**Auto-completion:** Another useful feature of a programmer's editor is
+auto-completion, which is a type of code completion that automatically
+suggests possible completions for the code that you are writing. This can
+save you time and effort, and can help you avoid mistakes. For example, if
+you start typing the name of a variable, the editor may automatically
+suggest the full variable name based on the other variables in your code.
+
+**Code navigation:** A programmer's editor can also help you navigate
+through your code more easily. Many editors include features like code
+folding, which allows you to collapse and expand sections of your code, and
+code outlining, which provides an overview of the structure of your code.
+This can make it easier to find the specific part of your code that you are
+looking for, and can help you understand the overall architecture of your
+application.
+
+**Integrated debugging:** Many programmer's editors also include tools for
+debugging your code. For example, some editors allow you to set breakpoints,
+which are points in your code where the execution will pause so you can
+inspect the state of the program. This can help you identify and fix errors
+in your code more quickly.
+
+**Customizability:** Another advantage of using a programmer's editor is
+that they are often highly customizable. Most editors allow you to adjust
+the color scheme, define your own keyboard shortcuts, and install plugins to
+add additional functionality. This means that you can tailor the editor to
+your specific needs and preferences, which can make your coding experience
+more efficient and enjoyable.
+
+Whether you are a beginner or an experienced developer, a programmer's
+editor can be a valuable tool in your toolkit.
+
+It is well worth getting to know the features of your editor well. Some
+of the benefits you'll get from this are:
+
+**Increased productivity:** The more familiar you are with the features
+of your programmer's editor, the more quickly and efficiently you will be
+able to write and edit code. For example, if you know how to use keyboard
+shortcuts, you can avoid using the mouse, which can save you time and reduce
+strain on your hands. Similarly, if you know how to use the auto-completion
+and code navigation features, you can quickly find and edit the parts of
+your code that you need to change.
+
+**Improved code quality:** Knowing the features of your programmer's editor
+can also help you write better code. For example, if you know how to use the
+syntax highlighting and code outlining features, you can easily spot errors
+and inconsistencies in your code. This can help you avoid mistakes that
+could cause your code to break, and can help you ensure that your code is
+clean, well-structured, and easy to read.
+
+**Greater flexibility:** The more you know about your programmer's editor,
+the more flexible you will be in terms of the types of projects you can
+work on. For example, if you know how to use the debugging tools, you will
+be better equipped to handle complex projects that require you to find and
+fix errors in your code. Similarly, if you know how to customize the editor,
+you can adjust it to fit your specific needs and preferences, which can make
+your coding experience more enjoyable and effective.
+
+**Enhanced learning and problem-solving skills:** Knowing the features of
+your programmer's editor can also help you develop your broader software
+development skills. For example, if you know how to use the code navigation
+and outlining tools, you will be better able to understand the structure and
+organization of your code. This can help you learn new programming concepts
+more quickly, and can make it easier for you to solve complex problems.
 
 Editor Features
 

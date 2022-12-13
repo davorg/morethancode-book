@@ -3,21 +3,21 @@ chapters = $(shell cat chapters.txt)
 
 epub: book
 
-book: $(book).epub
+book: ebook/$(book).epub
 
-mobi: $(book).mobi
+mobi: ebook/$(book).mobi
 
-pdf: $(book).pdf
+pdf: ebook/$(book).pdf
 
-$(book).mobi: $(book).epub
-	kindlegen -verbose $(book).epub
+ebook/$(book).mobi: ebook/$(book).epub
+	ebook-convert ebook/$(book).epub ebook/$(book).mobi
 
-$(book).epub: $(chapters) epub.css metadata.xml epub.css cover.png 
-	pandoc -o $(book).epub $(chapters) --epub-metadata=metadata.xml --toc --toc-depth=3 --css=epub.css --epub-cover-image=cover.png --number-sections
+ebook/$(book).epub: $(chapters) epub.css metadata.xml epub.css cover.png 
+	pandoc -o ebook/$(book).epub $(chapters) --epub-metadata=metadata.xml --toc --toc-depth=3 --css=epub.css --epub-cover-image=cover.png --number-sections
 
-$(book).pdf: $(book).epub
-	ebook-convert $(book).epub $(book).pdf
+ebook/$(book).pdf: ebook/$(book).epub
+	ebook-convert ebook/$(book).epub ebook/$(book).pdf
 
 clean:
-	rm -f $(book).{pdf,epub,mobi}
+	rm -f ebook/$(book).{pdf,epub,mobi}
 

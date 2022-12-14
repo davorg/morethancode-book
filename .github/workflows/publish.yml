@@ -27,8 +27,6 @@ jobs:
       run: |
         GIT_STATUS=$(git status --porcelain)
         echo $GIT_STATUS
-        git config --global user.name 'Dave Cross'
-        git config --global user.email 'dave@dave.org.uk'
         git add ebook/
         if [ "$GIT_STATUS" != "" ]; then git commit -m "Published new editions"; fi
         if [ "$GIT_STATUS" != "" ]; then git push; fi

@@ -11,8 +11,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Install Calibre
-      run: sudo apt update && sudo apt install calibre
+    - name: Install Calibre and Pandoc
+      run: sudo apt update && sudo apt install calibre pandoc
 
     - name: Publish ePub
       run: make book
@@ -23,3 +23,12 @@ jobs:
     - name: Publish PDF
       run: make pdf
 
+    - name: Commit new editions
+      run: |
+        GIT_STATUS=$(git status --porcelain)
+        echo $GIT_STATUS
+        git config --global user.name 'Dave Cross'
+        git config --global user.email 'dave@dave.org.uk'
+        git add ebook/
+        if [ "$GIT_STATUS" != "" ]; then git commit -m "Published new editions"; fi
+        if [ "$GIT_STATUS" != "" ]; then git push; fi
